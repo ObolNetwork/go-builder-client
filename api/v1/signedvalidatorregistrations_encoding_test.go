@@ -19,7 +19,6 @@ import (
 	"testing"
 
 	v1 "github.com/attestantio/go-builder-client/api/v1"
-	ssz "github.com/ferranbt/fastssz"
 	"github.com/stretchr/testify/require"
 )
 
@@ -56,7 +55,7 @@ func TestSignedValidatorRegistrationsSSZ(t *testing.T) {
 				require.EqualError(t, err, test.err)
 			} else {
 				require.NoError(t, err)
-				rt, err := ssz.MarshalSSZ(res)
+				rt, err := res.MarshalSSZ()
 				require.NoError(t, err)
 				require.Equal(t, test.input, rt)
 			}
